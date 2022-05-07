@@ -8,3 +8,7 @@ If you are not using a custom resolution you will be asked to then input a horiz
 A vertical resolution corresponding to your horizontal input will be calculated, in this case 600 for 16:10 and 540 for 16:9.
 When using a custom resolution the program will ask you for a horizontal resolution (integer) then a vertical resolution (integer).
 The new resolution will be written to The Witcher 3's user.settings file for the game to use. If you encounter any problems with this program, please contact me.
+
+# Testing
+If you want to run the script and test it locally open tw3_cr.py and update the "settings_loc" variable to point to the file you wish to test it on.
+For example: "settings_loc = "C:/Users/Bob/Desktop/TW3-CR/test/user.settings""
