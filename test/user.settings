@@ -1,0 +1,9 @@
+[Viewport]
+Vsync=false
+Resolution="1280x800"
+FullScreenMode=0
+VsyncThreshold=0
+OutputMonitor=0
+[Budget]
+TerrainTileMipDataBudget=100
+TerrainTileMinTimeout=2
