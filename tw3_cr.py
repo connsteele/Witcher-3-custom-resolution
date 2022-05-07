@@ -16,12 +16,11 @@ class AspectRatio(Enum):
 
 def main():
     print("This program will enter in a custom resolution for The Witcher 3: The Wild Hunt on Steam Deck")
-    # The string below is the settings location for TW3 on Deck no matter where the game is installed
-    settings_loc = '~./local/share/Steam/steamapps/compatdata/292030/pfx/drive_c/users/steamuser/My Documents/The Witcher 3/user.settings'
-    test_loc = 'C:/Users/Connor/Desktop/TW3-CR/test/user.settings'
+    # The string below is the settings location for TW3 on Steam Deck regardless of where the game is installed
+    settings_loc = '/home/deck/.local/share/Steam/steamapps/compatdata/292030/pfx/drive_c/users/steamuser/My Documents/The Witcher 3/user.settings'
     # Make sure the settings file exists
     try:
-        file = open(test_loc, 'r')
+        file = open(settings_loc, 'r')
         filebuffer = file.readlines()
         file.close()
     except OSError:
@@ -31,11 +30,10 @@ def main():
         return -1
 
     # Ask the user for a aspect ratio
-    aspect = get_aspect_ratio() 
+    aspect = get_aspect_ratio()
 
-    # Since we checked earlier the file must exist, overwrite it completley
-    # might need to set fullscreen setting
-    fw = open(test_loc, 'w')
+    # Overwrite the settings files
+    fw = open(settings_loc, 'w')
     for line in filebuffer:
         linelist = line.split("=")
         if linelist[0] == 'Resolution':
