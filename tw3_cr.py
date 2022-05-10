@@ -46,14 +46,10 @@ def main():
                 width = get_user_num()
                 print('Enter vertical resolution:')
                 height = get_user_num()
-                print("New resolution is:", width, 'x', height)
             else:
                 print('Enter horizontal resolution:')
                 width = get_user_num()
-                if aspect == AspectRatio.BY10:
-                    ratio = 10/16
-                else:
-                    ratio = 9/16
+                ratio = (9/16, 10/16)[aspect == AspectRatio.BY10]
                 height = int(width * ratio)
             print('New resolution is:', width, 'x', height)
             outline = 'Resolution=\"'+ str(width) + 'x' + str(height) + '\"\n'
