@@ -2,6 +2,9 @@
 from enum import Enum
 from functools import total_ordering
 
+# Location of the the settings file you want to modify
+SETTINGS_LOCATION = '/home/deck/.local/share/Steam/steamapps/compatdata/292030/pfx/drive_c/users/steamuser/My Documents/The Witcher 3/user.settings'
+
 @total_ordering
 class AspectRatio(Enum):
     BY10 = 1
@@ -16,16 +19,15 @@ class AspectRatio(Enum):
 
 def main():
     print("This program will enter in a custom resolution for The Witcher 3: The Wild Hunt on Steam Deck")
-    # The string below is the settings location for TW3 on Steam Deck regardless of where the game is installed
-    settings_loc = '/home/deck/.local/share/Steam/steamapps/compatdata/292030/pfx/drive_c/users/steamuser/My Documents/The Witcher 3/user.settings'
+    
     # Make sure the settings file exists
     try:
-        file = open(settings_loc, 'r')
+        file = open(SETTINGS_LOCATION, 'r')
         filebuffer = file.readlines()
         file.close()
     except OSError:
         print("The \"user.settings\" file for The Witcher 3: Wild Hunt does not exist in the expected location")
-        print("Make sure the game has been installed and run. If both are true contact the author of this code.")
+        print("Make sure the game has been installed and run. If both are true, contact the author of this code.")
         print("Exiting program")
         return -1
 
@@ -33,7 +35,7 @@ def main():
     aspect = get_aspect_ratio()
 
     # Overwrite the settings files
-    fw = open(settings_loc, 'w')
+    fw = open(SETTINGS_LOCATION, 'w')
     for line in filebuffer:
         linelist = line.split("=")
         if linelist[0] == 'Resolution':
@@ -44,7 +46,7 @@ def main():
                 width = get_user_num()
                 print('Enter vertical resolution:')
                 height = get_user_num()
-                print("New resoltion is:", width, 'x', height)
+                print("New resolution is:", width, 'x', height)
             else:
                 print('Enter horizontal resolution:')
                 width = get_user_num()
@@ -66,7 +68,7 @@ def get_aspect_ratio():
     print('What aspect ratio do you want to use:\n16:10, 16:9 or Custom')
     usrratio = input().casefold()
     if (usrratio != '16:10' and usrratio != '16:9' and usrratio != 'custom'.casefold()):
-        print('Invalid aspect ratio, please use: \"16:10\", \"16:9\" or \"Custom\"')
+        print('Invalid aspect ratio please use: \"16:10\", \"16:9\" or \"Custom\"')
         return get_aspect_ratio()
     elif usrratio == '16:10':
         print('16:10 selected\n')
